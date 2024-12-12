@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tableBody = document.querySelector('#dataTable tbody');
 
     const server = "jp1";
-    const ids = Array.from({ length: 29 }, (_, i) => 37 + i); // IDs 37〜65
+ const ids = Array.from({ length: 65 - 37 + 1 }, (_, i) => 37 + i); // 37〜65
     const classes = [1, 2, 3];
     const blocks = [0, 1, 2, 3];
 
