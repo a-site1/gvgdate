@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GVG Data Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .loading {
+            color: red;
+            margin-top: 10px;
+        }
+        .container {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>GVG Data Viewer</h1>
+    <div class="container">
+        <button id="fetchDataButton">データを取得</button>
+        <p class="loading" id="loadingMessage" style="display: none;">データを取得中...</p>
+    </div>
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>Server</th>
+                <th>ID</th>
+                <th>Class</th>
+                <th>Block</th>
+                <th>CastleId</th>
+                <th>GuildId</th>
+                <th>GuildName</th>
+                <th>AttackerGuildId</th>
+                <th>AttackPartyCount</th>
+                <th>DefensePartyCount</th>
+                <th>GvgCastleState</th>
+                <th>UtcFallenTimeStamp</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script src="script.js"></script>
+</body>
+</html>
