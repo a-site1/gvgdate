@@ -1,17 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
     const fetchDataButton = document.getElementById('fetchDataButton');
     const loadingMessage = document.getElementById('loadingMessage');
+    const progressMessage = document.getElementById('progressMessage');
     const tableBody = document.querySelector('#dataTable tbody');
 
     const server = "jp1";
- const ids = Array.from({ length: 65 - 37 + 1 }, (_, i) => 37 + i); // 37〜65
+    const ids = Array.from({ length: 65 - 37 + 1 }, (_, i) => 37 + i); // IDs 37〜65
     const classes = [1, 2, 3];
     const blocks = [0, 1, 2, 3];
+    const totalRequests = ids.length * classes.length * blocks.length; // 合計リクエスト数
+    let completedRequests = 0; // 完了したリクエスト数
 
     // APIからデータを取得
     const fetchData = async () => {
         loadingMessage.style.display = 'block';
         tableBody.innerHTML = ''; // テーブルをクリア
+        progressMessage.textContent = `読み込み中: 0% (0/${totalRequests} リクエスト)`;
 
         for (const id of ids) {
             for (const gvgClass of classes) {
@@ -49,13 +53,18 @@ document.addEventListener('DOMContentLoaded', () => {
                             tableBody.appendChild(row);
                         });
                     } catch (error) {
-                        console.error(`Error fetching data: ${error}`);
+                        console.error(`Error fetching data for ID ${id}, Class ${gvgClass}, Block ${block}: ${error}`);
+                    } finally {
+                        completedRequests++;
+                        const progress = Math.floor((completedRequests / totalRequests) * 100);
+                        progressMessage.textContent = `読み込み中: ${progress}% (${completedRequests}/${totalRequests} リクエスト)`;
                     }
                 }
             }
         }
 
         loadingMessage.style.display = 'none';
+        progressMessage.textContent = "データ読み込みが完了しました！";
     };
 
     // ボタンクリック時にデータを取得
