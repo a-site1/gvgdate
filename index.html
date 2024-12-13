@@ -29,6 +29,9 @@
         .container {
             margin-bottom: 20px;
         }
+        .storage-list {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -36,9 +39,11 @@
     <div class="container">
         <button id="fetchDataButton">データを取得</button>
         <button id="downloadCsvButton" disabled>CSVをダウンロード</button>
-        <p id="loadingMessage" style="display: none;">データを取得中...</p>
-        <p id="progressMessage">進捗: 0%</p>
+        <button id="saveToWebButton" disabled>ウェブに保存</button>
     </div>
+    <p id="loadingMessage" style="display: none;">データを取得中...</p>
+    <p id="progressMessage">進捗: 0%</p>
+    
     <table id="dataTable">
         <thead>
             <tr>
@@ -58,6 +63,13 @@
         </thead>
         <tbody></tbody>
     </table>
+
+    <!-- 保管リストを表示するセクション -->
+    <div class="storage-list">
+        <h2>保管データ一覧</h2>
+        <ul id="savedDataList"></ul>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
